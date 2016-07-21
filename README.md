@@ -1,8 +1,7 @@
-# InstagramPublicApi
+# Instagram Public API client
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/instagram_public_api`. To experiment with that code, run `bin/console` for an interactive prompt.
+A client/scraper/crawler for the public Instagram API. The client comes with handy methods such as passing a limit. The client will then proceed and crawl more data as required. Advanced configuration can be done using an http proxy.
 
-TODO: Delete this and the text above, and describe your gem
 
 ## Installation
 
@@ -22,7 +21,45 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+**Get media for a location:**
+
+```
+opts = {
+  limit: 100
+}
+InstagramPublicApi.location_media("263928560", {})
+```
+
+**Get media for a hashtag:**
+
+```
+opts = {
+  limit: 100
+}
+InstagramPublicApi.hashtag_media("racoon", opts)
+```
+
+
+### Advanced configuration
+
+You can configure an HTTP Proxy in case you would like the requests to be done via an external service.
+
+
+```
+
+opts = {
+  proxy_uri: "https://foo.com:3129",
+  proxy_user: "dalai",
+  proxy_password: "lama" 
+}
+
+InstagramPublicApi.proxy_config = InstagramPublicApi::ProxyConfig.new(opts)
+
+```
+
+This proxy config will be used as the default proxy configuration for all following requests. Each request also receives an options array, where you can pass a new proxy configuration if you like.
+
+
 
 ## Development
 
@@ -32,4 +69,4 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/instagram_public_api.
+Bug reports and pull requests are welcome on GitHub at https://github.com/hendricius/instagram_public_api.
