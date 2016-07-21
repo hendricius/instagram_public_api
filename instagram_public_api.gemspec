@@ -35,4 +35,5 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency(%q<faraday>,       ["~> 0.8"])
   spec.add_runtime_dependency "faraday_middleware"
   spec.add_runtime_dependency "activesupport"
+  spec.add_runtime_dependency "virtus"
 end

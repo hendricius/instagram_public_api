@@ -24,19 +24,13 @@ Or install it yourself as:
 **Get media for a location:**
 
 ```
-opts = {
-  limit: 100
-}
-InstagramPublicApi.location_media("263928560", {})
+InstagramPublicApi::Client.new.location_media("263928560", limit: 100, request_parameters: {})
 ```
 
 **Get media for a hashtag:**
 
 ```
-opts = {
-  limit: 100
-}
-InstagramPublicApi.hashtag_media("racoon", opts)
+InstagramPublicApi::Client.new.hashtag_media("raccoon", limit: 100, request_parameters: {})
 ```
 
 
@@ -46,19 +40,24 @@ You can configure an HTTP Proxy in case you would like the requests to be done v
 
 
 ```
-
-opts = {
-  proxy_uri: "https://foo.com:3129",
-  proxy_user: "dalai",
-  proxy_password: "lama" 
-}
-
-InstagramPublicApi.proxy_config = InstagramPublicApi::ProxyConfig.new(opts)
+InstagramPublicApi.proxy_uri      = "http://foo"
+InstagramPublicApi.proxy_user     = "ubuntu"
+InstagramPublicApi.proxy_password = "mycrazypassword"
 
 ```
 
-This proxy config will be used as the default proxy configuration for all following requests. Each request also receives an options array, where you can pass a new proxy configuration if you like.
+This proxy config will be used as the default proxy configuration for all following requests. When creating a client, you can pass an optional `http_service` with different proxy options as needed.
 
+``` 
+opts = {
+  uri: "http://customuri.com",
+  user: "customuser",
+  password: "custom-password",
+}
+service = InstagramPublicApi::HTTPService.new(proxy_config: opts)
+client  = InstagramPublicApi::Client.new(http_service: service)
+
+```
 
 
 ## Development
